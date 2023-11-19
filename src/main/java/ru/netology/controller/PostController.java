@@ -3,6 +3,7 @@ package ru.netology.controller;
 import com.google.gson.Gson;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import ru.netology.Dto.PostDto;
 import ru.netology.model.Post;
 import ru.netology.service.PostService;
 
@@ -10,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.Reader;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/posts")
@@ -21,7 +23,7 @@ public class PostController {
     }
 
     @GetMapping
-    public List<Post> all() {
+    public List<PostDto> all() {
         return service.all();
     }
 
@@ -31,7 +33,7 @@ public class PostController {
     }
 
     @PostMapping
-    public Post save(@RequestBody Post post) {
+    public Optional<Post> save(@RequestBody Post post) {
         return service.save(post);
     }
 
